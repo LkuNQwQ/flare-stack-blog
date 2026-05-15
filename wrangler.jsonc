@@ -17,7 +17,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_id": "my_blog",
+      "database_id": "7c8a9a8d-95ba-42ff-9ae8-79362f05b532",
       "migrations_dir": "migrations",
       "remote": true
     }
