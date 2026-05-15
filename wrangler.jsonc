@@ -32,12 +32,12 @@
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "my_blog_KV",
+      "id": "098d4ddb0c2943df83d1521900c4d166",
       "remote": true
     },
     {
       "binding": "OAUTH_KV",
-      "id": "myblog",
+      "id": "Ov23lilV7pjjc1wPmfMo",
       "remote": true
     }
   ],
