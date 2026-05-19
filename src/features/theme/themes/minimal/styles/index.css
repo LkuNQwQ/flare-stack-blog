@@ -1,0 +1,228 @@
+/* Theme: minimal — Magazine-style layout with elegant typography */
+@import "tailwindcss";
+@import "@/styles/shared.css";
+@import "@fontsource-variable/noto-serif-sc";
+@import "@fontsource-variable/jetbrains-mono";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  :root {
+    --mag-page-width: 72rem;
+    --mag-radius: 0.5rem;
+    --mag-radius-lg: 1rem;
+
+    /* Light mode */
+    --mag-bg: #fafaf9;
+    --mag-surface: #ffffff;
+    --mag-border: #e7e5e4;
+    --mag-text: #1c1917;
+    --mag-text-secondary: #78716c;
+    --mag-text-muted: #a8a29e;
+    --mag-accent: #b91c1c;
+    --mag-accent-hover: #991b1b;
+    --mag-tag-bg: #f5f5f4;
+    --mag-tag-text: #57534e;
+    --mag-hero-overlay: rgba(0, 0, 0, 0.55);
+    --mag-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --mag-card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --mag-nav-blur: rgba(250, 250, 249, 0.85);
+    --mag-divider: #d6d3d1;
+  }
+
+  .dark {
+    --mag-bg: #0c0a09;
+    --mag-surface: #1c1917;
+    --mag-border: #292524;
+    --mag-text: #fafaf9;
+    --mag-text-secondary: #a8a29e;
+    --mag-text-muted: #78716c;
+    --mag-accent: #ef4444;
+    --mag-accent-hover: #f87171;
+    --mag-tag-bg: #292524;
+    --mag-tag-text: #a8a29e;
+    --mag-hero-overlay: rgba(0, 0, 0, 0.65);
+    --mag-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --mag-card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --mag-nav-blur: rgba(12, 10, 9, 0.85);
+    --mag-divider: #44403c;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Noto Serif SC Variable", "Georgia", "Times New Roman", serif;
+    background-color: var(--mag-bg);
+    color: var(--mag-text);
+    transition: background-color 0.3s, color 0.3s;
+  }
+}
+
+@layer components {
+  /* Magazine card with hover lift */
+  .mag-card {
+    background: var(--mag-surface);
+    border: 1px solid var(--mag-border);
+    border-radius: var(--mag-radius-lg);
+    box-shadow: var(--mag-card-shadow);
+    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    overflow: hidden;
+  }
+  .mag-card:hover {
+    box-shadow: var(--mag-card-shadow-hover);
+    transform: translateY(-2px);
+    border-color: var(--mag-accent);
+  }
+
+  /* Tag pill */
+  .mag-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--mag-tag-bg);
+    color: var(--mag-tag-text);
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .mag-tag:hover {
+    background: var(--mag-accent);
+    color: white;
+  }
+
+  /* Accent underline for headings */
+  .mag-heading-accent {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  .mag-heading-accent::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2.5rem;
+    height: 3px;
+    background: var(--mag-accent);
+    border-radius: 2px;
+  }
+
+  /* Hero section gradient overlay */
+  .mag-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--mag-hero-overlay),
+      rgba(0, 0, 0, 0.3)
+    );
+  }
+
+  /* Navbar blur */
+  .mag-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: var(--mag-nav-blur);
+    border-bottom: 1px solid var(--mag-border);
+  }
+
+  /* Skeleton pulse */
+  .mag-skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--mag-border) 25%,
+      var(--mag-surface) 50%,
+      var(--mag-border) 75%
+    );
+    background-size: 200% 100%;
+    animation: mag-pulse 1.5s ease-in-out infinite;
+    border-radius: var(--mag-radius);
+  }
+
+  /* Divider line */
+  .mag-divider {
+    height: 1px;
+    background: var(--mag-divider);
+  }
+
+  /* Article prose styles */
+  .mag-prose {
+    color: var(--mag-text);
+    line-height: 1.85;
+    font-size: 1.0625rem;
+  }
+  .mag-prose h1,
+  .mag-prose h2,
+  .mag-prose h3 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+  .mag-prose h1 { font-size: 2rem; }
+  .mag-prose h2 { font-size: 1.5rem; }
+  .mag-prose h3 { font-size: 1.25rem; }
+  .mag-prose p {
+    margin-bottom: 1.25em;
+  }
+  .mag-prose a {
+    color: var(--mag-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+  .mag-prose a:hover {
+    color: var(--mag-accent-hover);
+  }
+  .mag-prose blockquote {
+    border-left: 3px solid var(--mag-accent);
+    padding-left: 1rem;
+    color: var(--mag-text-secondary);
+    font-style: italic;
+    margin: 1.5em 0;
+  }
+  .mag-prose code {
+    font-family: "JetBrains Mono Variable", monospace;
+    font-size: 0.875em;
+    background: var(--mag-tag-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+  }
+  .mag-prose pre code {
+    background: transparent;
+    padding: 0;
+  }
+  .mag-prose img {
+    border-radius: var(--mag-radius-lg);
+    margin: 1.5em auto;
+  }
+  .mag-prose hr {
+    border: none;
+    height: 1px;
+    background: var(--mag-divider);
+    margin: 2em 0;
+  }
+
+  /* Social link icon */
+  .mag-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: var(--mag-text-secondary);
+    transition: color 0.2s, background-color 0.2s;
+  }
+  .mag-social-icon:hover {
+    color: var(--mag-accent);
+    background: var(--mag-tag-bg);
+  }
+}
+
+@keyframes mag-pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

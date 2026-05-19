@@ -27,5 +27,9 @@ export const blogConfig = {
       avatar: "/images/avatar.png",
       primaryHue: 250,
     },
+    minimal: {
+      navBarName: "导航栏名称",
+      heroSubtitle: "欢迎来到我的博客",
+    },
   },
 } as const satisfies SiteConfig;
