@@ -25,6 +25,11 @@ const config = defineConfig(({ mode }) => {
       __THEME_NAME__: JSON.stringify(buildEnv.THEME),
       __THEME_CONFIG__: JSON.stringify(themes[buildEnv.THEME]),
     },
+    build: {
+      rollupOptions: {
+        external: ["cloudflare:workers"],
+      },
+    },
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
